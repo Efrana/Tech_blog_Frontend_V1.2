@@ -375,6 +375,7 @@ padding-bottom: 10px;
 
 .custom_align_pagination{
 	text-align: center;
+	/* margin-left: 25%; */
 }
 .custom_pagination_color li a{
 	color: black;
@@ -606,7 +607,7 @@ pre code {
 }
 .answer_para2{
 	width: 780px;
-	padding-left: 65px;
+	/* padding-left: 65px; */
 	font-family: 'Open Sans Light', sans-serif;
 }
 .share_div{
@@ -1172,6 +1173,7 @@ textarea {
 	 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 	 color:#44ce6f; 
 	 margin-top: 18px;
+	 margin-left: 25px;
  }
 
  .profileIcon2{

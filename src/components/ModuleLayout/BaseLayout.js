@@ -14,11 +14,12 @@ import AddGroups from '../Pages/AddGroups';
 function BaseLayout() {
     return (
         <div className="BaseLayout">
+            
             <BrowserRouter>
-                <NavBar />
+            <NavBar />
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/details/:id" component={Details} />
+                    <Route path="/details/:ID" component={Details} />
                     <Route path="/tags" component={Tag} />
                     <Route path="/ask_question" component={AskQuestion} />
                     <Route path="/edit_question" component={AskQuestion} />
@@ -29,6 +30,7 @@ function BaseLayout() {
                 </Switch>
                 <BottomFooter />
             </BrowserRouter>
+            
         </div>
     );
 }

@@ -50,7 +50,7 @@ class Card extends Component {
 								By {this.props.question.User.firstName}
 								</li>
 								<li>{moment(this.props.question.createdAt).format('MMMM Do, YYYY')}</li>
-								<li>Webdesign</li>
+								
 							</ul>
 						</div>
 						<div className="content">

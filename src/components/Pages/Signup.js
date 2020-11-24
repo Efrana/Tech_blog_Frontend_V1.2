@@ -23,7 +23,7 @@ const validEmailRegex = RegExp(
   };
 class Signup extends Component {
 	error_msg = {
-		fontSize: 12,
+		fontSize: 11,
 		color: 'red'
 	}
 	constructor(props) {
@@ -147,6 +147,7 @@ class Signup extends Component {
 		}
 	}
 	render() {
+		const { errors } = this.state;
 		return (
 			<React.Fragment>
 				<div class="modal" tabindex="-1" role="dialog" id="signupmodal" show={this.props.isModalOpen} onHide={this.closeModal}>
@@ -165,47 +166,47 @@ class Signup extends Component {
 										<input type="username" class="form-control fontcontrol" name="firstName"
 											placeholder="Firstname.."
 											onChange={this.handleChange} />
-										{/* <div>
+										<div>
 											{errors.firstName.length > 0 &&
 												<span className='error error_msg' style={this.error_msg}>{errors.firstName}</span>}
-										</div> */}
+										</div>
 									</div>
 									<div class="form-group">
 										<input type="username" class="form-control fontcontrol" id="text"
 											placeholder="Lastname.." name="lastName"
 											onChange={this.handleChange} />
-										{/* <div>
+										<div>
 											{errors.lastName.length > 0 &&
 												<span className='error error_msg' style={this.error_msg}>{errors.lastName}</span>}
-										</div> */}
+										</div>
 									</div>
 									<div class="form-group">
 										<input type="email" class="form-control fontcontrol" id="text"
 											name="email" placeholder="Email.."
 											onChange={this.handleChange} />
-										{/* <div>
+										<div>
 											{errors.email.length > 0 &&
 												<span className='error error_msg' style={this.error_msg}>{errors.email} </span>}
-										</div> */}
+										</div>
 									</div>
 									<div class="form-group">
 										<input type="password" class="form-control fontcontrol" id="text" name="password"
 											placeholder="Password.."
 											onChange={this.handleChange} />
-										{/* <div>
+										<div>
 											{errors.password.length > 0 &&
 												<span className='error error_msg' style={this.error_msg}>{errors.password}</span>}
-										</div> */}
+										</div>
 									</div>
 									<div class="form-group">
 										<input type="phone" class="form-control fontcontrol" id="text"
 											name="phoneNo"
 											placeholder="Phone.."
 											onChange={this.handleChange} />
-										{/* <div>
+										<div>
 											{errors.phoneNo.length > 0 &&
 												<span className='error error_msg' style={this.error_msg}>{errors.phoneNo} </span>}
-										</div> */}
+										</div>
 									</div>
 									<div>
 										{/* <p>Upload a Profile image</p> */}

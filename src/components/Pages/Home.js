@@ -93,9 +93,24 @@ class Home extends Component {
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <SideBar />
                         </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 custom_align_pagination">
+                            {/* <nav aria-label="Page navigation example"> */}
+                                {/* <ul class="pagination custom_pagination_color"> */}
+                                    <Pagination currentPage={currentPage}
+                                        totalPage={totalPage}
+                                        loadData={(value) => {
+                                            // console.log(value)
+                                            this.pagination(value)
+                                        }} />
+                                {/* </ul> */}
+                            {/* </nav> */}
+                        </div>
                     </div>
                 </div>
-                <div class="container">
+                {/* <div class="container">
                     <div class="row">
                         <div class="col-md-12 custom_align_pagination">
                             <nav aria-label="Page navigation example">
@@ -110,7 +125,7 @@ class Home extends Component {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </React.Fragment>
         )
     }
