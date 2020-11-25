@@ -8,7 +8,7 @@ class Dropdown extends Component {
 
         this.state = {
             currentUserName: '',
-            image: ''
+            image: null
 
         };
     }
@@ -26,14 +26,16 @@ class Dropdown extends Component {
         const token = window.localStorage.getItem('jwt-token')
         const imagesrc_pay = window.localStorage.getItem('imagesrc_pay')
         let decoded = jwt_decode(token);
+        console.log('decode',decoded)
         this.setState({
-            currentUserName: decoded.firstName,
-            image: imagesrc_pay
+            currentUserName: decoded.users.userName,
+            image: decoded.imageUrl
         })
 
     }
 
     render() {
+        // console.log("img",this.state.image)
         return (
             <React.Fragment>
                 <li>
@@ -46,7 +48,13 @@ class Dropdown extends Component {
                         <ul class="dropdown-menu menudesign">
                             <li>
                                 <div>
-                                    <img  class="main-img" src={" " + this.state.image}/>
+                                { this.state.image !=null &&
+                                 <img  class="main-img" src={" " + this.state.image}/>   
+                                }
+                                {this.state.image ===null &&
+                                 <img class="main-img" src="https://efrana.github.io/Tech_blogV1.2UI/img/profile.jpg"/>
+                                }
+                                   {/* <img  class="main-img" src={" " + this.state.image}/> */}
                                         <a class="profileIcon2">{this.state.currentUserName}</a>
                                         </div>
                                     </li>

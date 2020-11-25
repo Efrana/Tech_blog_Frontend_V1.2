@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link , Redirect} from 'react-router-dom';
-class Card extends Component {
+import { Link , Redirect,withRouter} from 'react-router-dom';
+class BottomFooter extends Component {
    render(){
        return(
         <React.Fragment>
@@ -58,4 +58,4 @@ class Card extends Component {
    }
 
 }
-export default Card
+export default withRouter(BottomFooter)

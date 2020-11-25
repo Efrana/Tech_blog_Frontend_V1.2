@@ -3,9 +3,9 @@ import CommentPart from '../Layouts/Comment';
 // import Answer from '../Layouts/Answer';
 import SideBar from "../Layouts/SideBar";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import Config from "../BaseUrl/Config";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,withRouter,BrowserRouter } from "react-router-dom";
 import moment from 'moment';
 import Comment from '../Layouts/Comment';
 
@@ -36,13 +36,14 @@ class Details extends Component {
     componentDidMount() {
 
         this.details()
-
-        if (!window.localStorage.getItem('jwt-token')) {
-            console.log("no token found")
-        }
-        else {
-            this.decodedToken()
-        }
+        // const storedToken = localStorage.getItem("jwt-token");
+        // if (storedToken) {
+            
+        //     this.decodedToken()
+        // }
+        // else {
+        //     console.log("no token found")
+        // }
     }
 
     componentDidUpdate() {
@@ -84,21 +85,21 @@ class Details extends Component {
     }
 
 
-    decodedToken() {
-        const token = window.localStorage.getItem('jwt-token')
-        let decoded = jwt_decode(token);
-        this.setState({
-            currentUserId: decoded.id
-        })
+    // decodedToken() {
+    //     const token = window.localStorage.getItem('jwt-token')
+    //     let decoded = jwt_decode(token);
+    //     this.setState({
+    //         currentUserId: decoded.id
+    //     })
 
-    }
+    // }
 
     render() {
-        console.log("heloo",this.state.Question.title)
+        console.log("heloo",this.props.match.params.ID)
         let { Tags, count, errors, QuestionComments, currentUserId } = this.state;
         moment('timestamp').format('MMMM Do YYYY')
         return (
-            <React.Fragment>
+            // <React.Fragment>
                
                 <div class="container mt-4">
                     <div class="row">
@@ -185,16 +186,14 @@ class Details extends Component {
                                         </div>
                                 </div>
                             </div>
-                            
-
                         </div>
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <SideBar />
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            // </React.Fragment>
         )
     }
 }
-export default Details
+export default withRouter(Details)

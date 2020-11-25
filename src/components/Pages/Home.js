@@ -66,6 +66,7 @@ class Home extends Component {
                     currentPage: response.data.pagination.current_page,
                     totalPage: response.data.pagination.totalPage,
                 });
+                console.log('question',response.data.questions)
 
             })
             .catch((error) => console.log(error));
@@ -87,7 +88,6 @@ class Home extends Component {
                                 <Card question={question} key={index}
                                 />
                             ))}
-
                             {/* card end */}
                         </div>
                         <div class="col-md-3 col-sm-4 col-xs-12">
@@ -97,38 +97,17 @@ class Home extends Component {
                     </div>
                     <div class="row">
                         <div class="col-md-12 custom_align_pagination">
-                            {/* <nav aria-label="Page navigation example"> */}
-                                {/* <ul class="pagination custom_pagination_color"> */}
                                     <Pagination currentPage={currentPage}
                                         totalPage={totalPage}
                                         loadData={(value) => {
-                                            // console.log(value)
                                             this.pagination(value)
                                         }} />
-                                {/* </ul> */}
-                            {/* </nav> */}
                         </div>
                     </div>
                 </div>
-                {/* <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 custom_align_pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination custom_pagination_color">
-                                    <Pagination currentPage={currentPage}
-                                        totalPage={totalPage}
-                                        loadData={(value) => {
-                                            // console.log(value)
-                                            this.pagination(value)
-                                        }} />
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div> */}
             </React.Fragment>
         )
     }
 
 }
-export default Home
+export default withRouter(Home)

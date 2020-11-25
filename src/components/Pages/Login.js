@@ -124,10 +124,8 @@ class Login extends Component {
                 <div class="modal" tabindex="-1" role="dialog" id="mymodal" show={this.props.isModalOpen} onHide={this.state.isModalClose}>
                     <div class="modal-dialog modal_width" role="document">
                         <div class="modal-content" style={{ borderRadius: "0px" }}>
-                            {/* <a href="#"><i class="fa fa-window-close window_close_icon"  class="close" data-dismiss="modal" aria-hidden="true"></i></a> */}
                             <i class="fa fa-window-close window_close_icon" onClick={this.closeModal}></i>
                             <div class="modal-header boder-bottom-color">
-                                {/* <i class="fa fa-window-close"></i> */}
                                 <p class="modal_p">Login To Our Site</p>
                                 <p class="modal_sugg">Enter your username and password to log on :</p>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

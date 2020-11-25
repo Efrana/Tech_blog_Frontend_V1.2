@@ -47,16 +47,14 @@ class Card extends Component {
 						<div className="details">
 							<ul>
 								<li><span className="user_padding"><i className="fa fa-user" aria-hidden="true"></i></span>
-								By {this.props.question.User.firstName}
+								By {this.props.question.User.userName}
 								</li>
 								<li>{moment(this.props.question.createdAt).format('MMMM Do, YYYY')}</li>
 								
 							</ul>
 						</div>
 						<div className="content">
-							<p>It is a long established fact that a reader will be distracted by
-								the readable content of a page when looking at its layout. The point
-								of using Lorem Ipsum is that it has a more-or-less normal distribution </p>
+							<p>{this.props.question.body} </p>
 						</div>
 						<div className="tags">
 						{this.props.question.tags.map((tag, index) => (

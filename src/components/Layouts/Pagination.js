@@ -20,19 +20,19 @@ class Pagination extends Component {
         }
         
 
-        {/* {pages.map((page, index) => (
-          <li key={index}>
-            { this.props.totalPage > 1 &&
-              <li className={page===this.props.currentPage ? "page-item active" : "page-item"}>
-                <a className="page-link" 
+        {pages.map((page, index) => (
+          // <li key={index}>
+            // { this.props.totalPage > 1 &&
+              <li className = {page===this.props.currentPage ? "page-item active " : "page-item"}>
+                <a className="page-link" style={{ color: "black" }}
                   onClick={() => {
                     this.props.loadData(page)
                   }}>{page}
                 </a>
-            //   </li>
-            }
-          </li>
-        ))} */}
+               </li>
+            // }
+          // </li>
+        ))}
 
 
         { this.props.currentPage < this.props.totalPage &&

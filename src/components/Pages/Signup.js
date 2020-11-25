@@ -5,22 +5,22 @@ import Config from "../BaseUrl/Config";
 
 const validEmailRegex = RegExp(
 	/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  );
-  const validateForm = ({ errors, ...rest }) => {
+);
+const validateForm = ({ errors, ...rest }) => {
 	let valid = true;
-  
+
 	// validate form errors being empty
 	Object.values(errors).forEach(val => {
-	  val.length > 0 && (valid = false);
+		val.length > 0 && (valid = false);
 	});
-  
+
 	// validate the form was filled out
 	Object.values(rest).forEach(val => {
-	  val === null && (valid = false);
+		val === null && (valid = false);
 	});
-  
+
 	return valid;
-  };
+};
 class Signup extends Component {
 	error_msg = {
 		fontSize: 11,
@@ -31,24 +31,18 @@ class Signup extends Component {
 
 
 		this.state = {
-			selectedFile:null,
-			// userName:null,
-			phoneNo: null,
 			password: null,
 			email: null,
-			firstName: null,
-			lastName: null,
+			userName: null,
 			modal: '',
 			form_empty: '',
-	  
+
 			errors: {
-			  phoneNo: '',
-			  password: '',
-			  email: '',
-			  firstName: '',
-			  lastName: '',
+				password: '',
+				email: '',
+				userName: '',
 			}
-		  }
+		}
 	}
 
 	// validation part start
@@ -58,13 +52,6 @@ class Signup extends Component {
 		let errors = this.state.errors;
 
 		switch (name) {
-			case 'phoneNo':
-				errors.phoneNo =
-					value.length < 10
-						? 'phoneNo must be 10 characters!'
-						: '';
-				break;
-
 			case 'email':
 				errors.email =
 					validEmailRegex.test(value)
@@ -79,17 +66,10 @@ class Signup extends Component {
 						: '';
 				break;
 
-			case 'firstName':
-				errors.firstName =
+			case 'userName':
+				errors.userName =
 					value.length < 3 || value.length > 8
 						? 'First Name must be between 3 to 8 characters!'
-						: '';
-				break;
-
-			case 'lastName':
-				errors.lastName =
-					value.length < 4 || value.length > 8
-						? 'Last Name must be between 4 to 6 characters!'
 						: '';
 				break;
 
@@ -101,51 +81,30 @@ class Signup extends Component {
 		this.setState({ errors, [name]: value });
 	}
 
-
-	fileSelectHandler = event => {
-		console.log(event.target.files[0])
-		this.setState({
-			selectedFile: event.target.files[0]
-		})
-	}
-
-	handleSubmit = (event) => {
+	
+	handleSubmit = (event, history) => {
 		event.preventDefault();
 		if (validateForm(this.state)) {
+
 			const obj = {
-				profile: this.state.selectedFile,
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
-				password: this.state.password,
+				userName: this.state.userName,
 				email: this.state.email,
-				phoneNo: this.state.phoneNo
+				password: this.state.password
 			};
-			const formData = new FormData();
-			formData.append('profile', obj.profile)
-			formData.append('userName', obj.firstName)
-			formData.append('firstName', obj.firstName)
-			formData.append('lastName', obj.lastName)
-			formData.append('password', obj.password)
-			formData.append('email', obj.email)
-			formData.append('phoneNo', obj.phoneNo)
-			const config = {
-				headers: {
-					'content-type': 'multipart/form-data'
-				}
-			}
-			axios.post(`${Config.apiUrl}/api/sign-up`, formData, config)
+
+			axios.post(`${Config.apiUrl}/api/sign-up`, obj)
 				.then(res => console.log(res.data));
-			// this.props.history.push('/login');
+
 
 		} else {
 			console.error('Invalid Form')
-
 			this.setState({
 				form_empty: "Invalid form please input value"
 			})
 
 		}
 	}
+
 	render() {
 		const { errors } = this.state;
 		return (
@@ -163,21 +122,12 @@ class Signup extends Component {
 							<div class="modal-body modal-body-design2">
 								<form onSubmit={this.handleSubmit}>
 									<div class="form-group">
-										<input type="username" class="form-control fontcontrol" name="firstName"
-											placeholder="Firstname.."
-											onChange={this.handleChange} />
-										<div>
-											{errors.firstName.length > 0 &&
-												<span className='error error_msg' style={this.error_msg}>{errors.firstName}</span>}
-										</div>
-									</div>
-									<div class="form-group">
 										<input type="username" class="form-control fontcontrol" id="text"
-											placeholder="Lastname.." name="lastName"
+											placeholder="Username.." name="userName"
 											onChange={this.handleChange} />
 										<div>
-											{errors.lastName.length > 0 &&
-												<span className='error error_msg' style={this.error_msg}>{errors.lastName}</span>}
+											{errors.userName.length > 0 &&
+												<span className='error error_msg' style={this.error_msg}>{errors.userName}</span>}
 										</div>
 									</div>
 									<div class="form-group">
@@ -198,21 +148,6 @@ class Signup extends Component {
 												<span className='error error_msg' style={this.error_msg}>{errors.password}</span>}
 										</div>
 									</div>
-									<div class="form-group">
-										<input type="phone" class="form-control fontcontrol" id="text"
-											name="phoneNo"
-											placeholder="Phone.."
-											onChange={this.handleChange} />
-										<div>
-											{errors.phoneNo.length > 0 &&
-												<span className='error error_msg' style={this.error_msg}>{errors.phoneNo} </span>}
-										</div>
-									</div>
-									<div>
-										{/* <p>Upload a Profile image</p> */}
-										<input type="file" id="myFile" name="filename" onChange={this.fileSelectHandler} />
-									</div>
-
 									<button type="submit" class="btn btn-primary btn_secoend" >Sign up!</button>
 								</form>
 							</div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route,withRouter } from 'react-router-dom';
+import AuthenticatedComponent from '../Auth/AuthenticatedComponent'
 import NavBar from "../Layouts/NavBar";
 import BottomFooter from "../Layouts/BottomFooter";
 import Home from "../Pages/Home";
@@ -10,29 +11,48 @@ import PendingQuestion from "../Pages/PendinQuestion";
 import UserList from "../Pages/UserList";
 import GroupList from "../Pages/GroupList";
 import AddGroups from '../Pages/AddGroups';
-
+import { routes } from './Routes';
+//  const swichRoutes = (
+//      <Switch>
+//          {
+//              routes.map((prop,key) => {
+//                 return (
+//                     <Route
+//                     path = {prop.path}
+//                     component = {prop.component}
+//                     key = {key}
+//                     />
+//                 ) 
+//              }
+//              )
+//          }
+//          </Switch>
+//  )
 function BaseLayout() {
     return (
-        <div className="BaseLayout">
-            
-            <BrowserRouter>
+            // <BrowserRouter>
+            <>
             <NavBar />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/details/:ID" component={Details} />
+            <div>
+            <swichRoutes/>
+            </div>
+                <Switch>  
+                     <Route path="/" exact component={Home} />
+                    <Route path="/details/:ID" exact component={Details} />
                     <Route path="/tags" component={Tag} />
-                    <Route path="/ask_question" component={AskQuestion} />
+                    <AuthenticatedComponent>
+                    <Route path="/ask_question" exact component={AskQuestion} />
                     <Route path="/edit_question" component={AskQuestion} />
-                    <Route exact path="/pending_question" component={PendingQuestion} />
-                    <Route exact path="/user_list" component={UserList} />
-                    <Route exact path="/group_list" component={GroupList} />
-                    <Route exact path="/add_group" component={AddGroups} />
+                    </AuthenticatedComponent>
+                    <Route path="/pending_question" component={PendingQuestion} />
+                    <Route path="/user_list" component={UserList} />
+                    <Route path="/group_list" component={GroupList}/>
+                    <Route path="/add_group" component={AddGroups} /> 
                 </Switch>
                 <BottomFooter />
-            </BrowserRouter>
-            
-        </div>
+                </>
+            //  </BrowserRouter>       
     );
 }
 
-export default BaseLayout;
+export default withRouter(BaseLayout);

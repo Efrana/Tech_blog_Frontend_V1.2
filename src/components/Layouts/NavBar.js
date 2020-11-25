@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect,withRouter } from 'react-router-dom';
 import SearchBar from "./SearchBar"
 import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
@@ -114,4 +114,4 @@ class NavBar extends Component {
 	}
 
 }
-export default NavBar
+export default withRouter(NavBar)
